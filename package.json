@@ -1,0 +1,23 @@
+{
+  "name": "socket-server",
+  "version": "1.0.0",
+  "description": "servidor en express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "websocket",
+    "express",
+    "nodejs"
+  ],
+  "author": "Cristian Camilo Osorio Granada",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.21",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "typescript": "^5.4.5"
+  }
+}
