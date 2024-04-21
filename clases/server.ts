@@ -30,8 +30,14 @@ export default class Server {
     private escuharSockets(){
     console.log("Escuchando conexiones -sockets");
     this.io.on('connection',cliente=>{
-        console.log("Cliente conectado");
+        console.log(cliente.id);
 
+        //Conectar Cliente
+
+        socket.conectarCliente(cliente);
+
+        //Configurar Usuario
+        socket.configurarUsuario(cliente,this.io);
 
 
       //Mensajes
@@ -41,9 +47,7 @@ export default class Server {
         //Desconectar
         socket.desconectar(cliente);
 
-        //Configurar Usuario
-        socket.configurarUsuario(cliente,this.io);
-
+      
     })
     }
 
