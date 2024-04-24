@@ -1,6 +1,7 @@
 import {Router,Request,Response} from 'express';
 import Server from '../clases/server';
 import { Socket } from 'socket.io';
+import { usuariosConectados } from '../sockets/socket';
  
  
 
@@ -93,4 +94,20 @@ router.get('/usuarios', (req: Request, res: Response) => {
       })
     })
   
+});
+
+//Obtenr usuarios y sus nombres
+
+router.get('/usuarios/detalle', (req: Request, res: Response) => {
+ 
+   
+
+
+  
+  return res.json({
+    ok: true,
+    clients: usuariosConectados.getLista()
+    
+  })
+
 });
