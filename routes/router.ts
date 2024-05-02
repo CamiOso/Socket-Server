@@ -2,11 +2,15 @@ import {Router,Request,Response} from 'express';
 import Server from '../clases/server';
 import { Socket } from 'socket.io';
 import { usuariosConectados } from '../sockets/socket';
+import { GraficaData } from '../clases/grafica';
+import { Mapa } from '../clases/mapa';
  
  
 
 
 export const router=Router();
+const grafica=new GraficaData();
+const mapa=new Mapa();
 
 router.get('/mensajes',(req:Request,res:Response)=>{
 
@@ -18,6 +22,40 @@ router.get('/mensajes',(req:Request,res:Response)=>{
 });
 
  
+
+router.get('/mapa',(req:Request,res:Response)=>{
+
+  res.json(mapa.getMarcadores());
+
+});
+
+
+
+
+
+
+
+router.get('/grafica', ( req: Request, res: Response  ) => {
+
+  res.json( grafica.getDataGrafica());
+
+});
+
+router.post('/grafica', ( req: Request, res: Response  ) => {
+
+  const opcion   = Number( req.body.opcion );
+  const unidades = Number( req.body.unidades );
+
+  grafica.incrementarValor( opcion, unidades );
+
+  const server = Server.instance;
+  server.io.emit('cambio-grafica', grafica.getDataGrafica() );
+
+
+  res.json( grafica.getDataGrafica() );
+
+});
+
 
 router.post('/mensajes',(req:Request,res:Response)=>{
 
