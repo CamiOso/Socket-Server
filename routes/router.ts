@@ -1,16 +1,16 @@
 import {Router,Request,Response} from 'express';
 import Server from '../clases/server';
 import { Socket } from 'socket.io';
-import { usuariosConectados } from '../sockets/socket';
+import { usuariosConectados,mapa } from '../sockets/socket';
 import { GraficaData } from '../clases/grafica';
-import { Mapa } from '../clases/mapa';
+ 
  
  
 
 
 export const router=Router();
 const grafica=new GraficaData();
-const mapa=new Mapa();
+
 
 router.get('/mensajes',(req:Request,res:Response)=>{
 

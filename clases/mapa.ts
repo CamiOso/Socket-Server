@@ -47,4 +47,9 @@ export class Mapa {
         this.marcadores[marcador.id].lng=marcador.lng;
     }
 
+
+    agregarMarcador(marcador:Marcador){
+        this.marcadores[marcador.id]=marcador;
+    }
+
 }
