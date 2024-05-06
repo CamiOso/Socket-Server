@@ -25,11 +25,13 @@ export const mapaSockets=(cliente:Socket,io:socketIO.Server)=>{
 
     cliente.on("marcador-borrar",(id:string)=>{
 
-        io.emit("marcador-borrar",id);
+         mapa.borrarMarcador(id);
+         cliente.broadcast.emit("marcador-borrar",id);
     })
 
-    cliente.on("marcador-mover",(marcador)=>{
-        io.emit("marcador-mover",marcador);
+    cliente.on("marcador-mover",(marcador:Marcador)=>{
+         mapa.moverMarcador(marcador);
+            cliente.broadcast.emit("marcador-mover",marcador);
     })
 
 }
