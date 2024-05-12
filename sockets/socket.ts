@@ -4,12 +4,28 @@ import { UsuariosLista } from "../clases/usuarios-lista";
 import { Usuario } from "../clases/usuario";
 import { Mapa } from "../clases/mapa";
 import { Marcador } from "../clases/marcador";
+import { MapaGoogleMaps } from "../clases/mapagooglemaps";
 
 // Desconectar a un cliente
 
 
 export const usuariosConectados=new UsuariosLista();
 export const mapa=new Mapa();
+export const mapaGoogleMaps=new MapaGoogleMaps();
+
+
+
+export const marcadorNuevo=(cliente:Socket)=>{
+    cliente.on("marcador-nuevo",(marcador:Marcador)=>{
+        mapaGoogleMaps.agregarMarcador(marcador);
+        cliente.broadcast.emit("marcador-nuevo",marcador);
+    })
+
+}
+
+
+
+
 
 
 
@@ -22,6 +38,11 @@ export const mapaSockets=(cliente:Socket,io:socketIO.Server)=>{
 
          cliente.broadcast.emit("marcador-nuevo",marcador);
     })
+
+ 
+
+
+
 
     cliente.on("marcador-borrar",(id:string)=>{
 
@@ -108,4 +129,8 @@ export const obtenerUsuarios=(cliente:Socket,io:socketIO.Server)=>{
 
     
 
+
+
 }
+ 
+

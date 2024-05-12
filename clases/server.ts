@@ -3,6 +3,8 @@ import { SERVER_PORT } from '../global/environment';
 import * as socketIO from 'socket.io';
 import http from 'http';
 import * as socket from '../sockets/socket';
+ ;
+
 
 export default class Server {
 
@@ -31,6 +33,11 @@ export default class Server {
     console.log("Escuchando conexiones -sockets");
     this.io.on('connection',cliente=>{
         console.log(cliente.id);
+
+
+        // Mapas
+
+        socket.marcadorNuevo(cliente);
 
         //Conectar Cliente
 

@@ -3,6 +3,7 @@ import Server from '../clases/server';
 import { Socket } from 'socket.io';
 import { mapa, usuariosConectados } from '../sockets/socket';
 import { GraficaData } from '../clases/grafica';
+import { MapaGoogleMaps } from '../clases/mapagooglemaps';
  
  
 
@@ -10,6 +11,41 @@ import { GraficaData } from '../clases/grafica';
 export const router=Router();
 const grafica=new GraficaData();
 
+//Google Maps
+
+export const mapaGoogleMaps=new MapaGoogleMaps();
+const lugares=[
+  {
+    id: '1',
+    nombre: 'Udemy',
+    lat: 37.784679,
+    lng: -122.395936,
+    color: '#dd8fee'
+  },
+  {
+    id: '2',
+    nombre: 'Bahía de San Francisco',
+    lat: 37.798933,
+    lng: -122.377732,
+    color: '#dd8fee'
+  },
+  {
+    id: '3',
+    nombre: 'The Palace Hotel',
+    lat: 37.788578,
+    lng: -122.401745,
+    color: '#dd8fee'
+  }
+];
+
+
+
+mapaGoogleMaps.marcadores.push(...lugares);
+
+router.get('/mapagooglemaps',(req:Request,res:Response)=>{
+
+  res.json(mapaGoogleMaps.getMarcadores());
+})
 
  
 
