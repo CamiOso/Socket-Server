@@ -38,6 +38,8 @@ export default class Server {
         // Mapas
 
         socket.marcadorNuevo(cliente);
+        socket.marcadorBorrar(cliente);
+        socket.marcadorMover(cliente);
 
         //Conectar Cliente
 

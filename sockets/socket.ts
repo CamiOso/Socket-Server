@@ -23,6 +23,22 @@ export const marcadorNuevo=(cliente:Socket)=>{
 
 }
 
+export const marcadorBorrar=(cliente:Socket)=>{
+    cliente.on("marcador-borrar",(id:string)=>{
+        mapaGoogleMaps.borrarMarcador(id);
+        cliente.broadcast.emit("marcador-borrar",id);
+    })
+
+}
+
+
+export const marcadorMover=(cliente:Socket)=>{
+    cliente.on("marcador-mover",(marcador:any)=>{
+        mapaGoogleMaps.moverMarcador(marcador);
+        cliente.broadcast.emit("marcador-mover",marcador);
+    })
+
+}
 
 
 
